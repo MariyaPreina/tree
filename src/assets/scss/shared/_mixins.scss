@@ -1,0 +1,19 @@
+@mixin respond-to($name, $bp: $breakpoints) {
+    $max: breakpoint-max($name, $bp);
+
+    @if $max {
+        @media (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin hover {
+    @media (hover), (-ms-high-contrast: none), (-ms-high-contrast: active) {
+        &:hover {
+            @content;
+        }
+    }
+}
