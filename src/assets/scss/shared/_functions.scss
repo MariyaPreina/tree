@@ -2,7 +2,7 @@
 @function breakpoint-max($name, $bp: $breakpoints) {
     $next: breakpoint-next($name, $bp);
 
-    @return if($next, breakpoint-min($next, $bp) - .02, null);
+    @return if($next, breakpoint-min($next, $bp) - 0.02, null);
 }
 
 @function breakpoint-min($name, $bp: $breakpoints) {
@@ -11,10 +11,18 @@
     @return if($min != 0, $min, null);
 }
 
-@function breakpoint-next($name, $bp: $breakpoints, $breakpoint-names: map-keys($bp)) {
+@function breakpoint-next(
+    $name,
+    $bp: $breakpoints,
+    $breakpoint-names: map-keys($bp)
+) {
     $n: index($breakpoint-names, $name);
 
-    @return if($n != null and $n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+    @return if(
+        $n != null and $n < length($breakpoint-names),
+        nth($breakpoint-names, $n + 1),
+        null
+    );
 }
 
 @function breakpoint-infix($name, $bp: $breakpoints) {
